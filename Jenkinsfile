@@ -3,12 +3,10 @@ pipeline {
 
     environment {
         DOCKERHUB_CRED = credentials('dockerhub-cred')
-        KUBECONFIG_CRED = credentials('kubeconfig')
         IMAGE_NAME = "shreyeah29/habit-tracker:latest"
     }
 
     stages {
-
         stage('Checkout Code') {
             steps {
                 echo "📦 Checking out code from GitHub..."
