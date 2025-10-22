@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: habit-tracker-deployment
+  labels:
+    app: habit-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: habit-tracker
+  template:
+    metadata:
+      labels:
+        app: habit-tracker
+    spec:
+      containers:
+        - name: habit-tracker
+          image: shreyeah29/habit-tracker:latest   # <-- you'll update this after pushing to Docker Hub
+          ports:
+            - containerPort: 5011
+          env:
+            - name: FLASK_ENV
+              value: "production"
