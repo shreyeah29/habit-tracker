@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Stats</h2>
+  <div class="grid">
+    <div class="stat">
+      <div class="stat-number">{{ total_habits }}</div>
+      <div class="stat-label">Total Habits</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">{{ total_checkins }}</div>
+      <div class="stat-label">Total Check-ins</div>
+    </div>
+  </div>
+  <p>More analytics will come later.</p>
+</section>
+{% endblock %}
