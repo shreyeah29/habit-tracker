@@ -34,17 +34,18 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes') {
-            steps {
-                echo '🚀 Deploying to Kubernetes...'
-                writeFile file: 'kubeconfig', text: "${KUBE_CRED}"
-                sh '''
-                export KUBECONFIG=kubeconfig
+    steps {
+        echo "🚀 Deploying to Kubernetes..."
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+            sh '''
+                kubectl get nodes
                 kubectl apply -f k8s/deployment.yaml
                 kubectl apply -f k8s/service.yaml
-                '''
-            }
+            '''
         }
     }
+}
+
 
     post {
         success {
